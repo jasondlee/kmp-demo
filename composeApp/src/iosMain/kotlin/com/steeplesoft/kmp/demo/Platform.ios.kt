@@ -1,4 +1,4 @@
-package com.steeplesoft.kmp.dempo
+package com.steeplesoft.kmp.demo
 
 import platform.UIKit.UIDevice
 
