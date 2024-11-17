@@ -41,6 +41,9 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.room.paging)
+
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.kotlinx.coroutines.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -61,6 +64,15 @@ kotlin {
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
             // Room
+
+            // Ktor Client
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.auth)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.kotlinx.coroutines.core)
+            // Ktor Client
         }
         iosMain.dependencies {
             // Decompose
@@ -69,6 +81,9 @@ kotlin {
             api(libs.essenty.lifecycle)
             api(libs.essenty.statekeeper)
             // Decompose
+
+            implementation(libs.ktor.client.darwin)
+
         }
     }
 }
