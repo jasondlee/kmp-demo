@@ -7,6 +7,7 @@ import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.steeplesoft.kmp.demo.clickme.clickMe
+import com.steeplesoft.kmp.demo.userlist.userList
 
 @Composable
 fun RootContent(
@@ -22,6 +23,7 @@ fun RootContent(
         val childModifier = Modifier.fillMaxSize()
         when (val child = it.instance) {
             is RootComponent.Child.ClickMe -> clickMe(child.component, childModifier)
+            is RootComponent.Child.UserList -> userList(child.component, childModifier)
         }
     }
 }

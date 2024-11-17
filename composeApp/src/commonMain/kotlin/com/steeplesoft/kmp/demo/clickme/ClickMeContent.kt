@@ -26,6 +26,9 @@ fun clickMe(component: ClickMeComponent,
         Button(onClick = { showContent = !showContent }) {
             Text("Click me!")
         }
+        Button(onClick = { component.onUserListClicked()} ) {
+            Text("Show users")
+        }
         AnimatedVisibility(showContent) {
             val greeting = remember { Greeting().greet() }
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {

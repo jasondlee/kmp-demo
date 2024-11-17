@@ -4,12 +4,15 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
 import com.steeplesoft.kmp.demo.AppContext
 import com.steeplesoft.kmp.demo.clickme.ClickMeComponent
 import com.steeplesoft.kmp.demo.clickme.ClickMeComponentImpl
 import com.steeplesoft.kmp.demo.room.db
 import com.steeplesoft.kmp.demo.room.getRoomDatabase
+import com.steeplesoft.kmp.demo.userlist.UserListComponent
+import com.steeplesoft.kmp.demo.userlist.UserListComponentImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -21,6 +24,7 @@ interface RootComponent {
 
     sealed interface Child {
         class ClickMe(val component: ClickMeComponent) : Child
+        class UserList(val component : UserListComponent) : Child
     }
 }
 
@@ -42,7 +46,11 @@ class RootComponentImpl(componentContext: ComponentContext) :
     ): RootComponent.Child {
         return when (config) {
             is NavigationConfig.ClickMe ->
-                RootComponent.Child.ClickMe(ClickMeComponentImpl(componentContext))
+                RootComponent.Child.ClickMe(ClickMeComponentImpl(componentContext) {
+                    nav.push(NavigationConfig.UserList)
+                })
+            is NavigationConfig.UserList ->
+                RootComponent.Child.UserList(UserListComponentImpl(componentContext))
         }
     }
 }
@@ -51,4 +59,6 @@ class RootComponentImpl(componentContext: ComponentContext) :
 sealed interface NavigationConfig {
     @Serializable
     data object ClickMe : NavigationConfig
+    @Serializable
+    data object UserList : NavigationConfig
 }
