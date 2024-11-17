@@ -5,8 +5,15 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
+import com.steeplesoft.kmp.demo.AppContext
 import com.steeplesoft.kmp.demo.clickme.ClickMeComponent
 import com.steeplesoft.kmp.demo.clickme.ClickMeComponentImpl
+import com.steeplesoft.kmp.demo.room.db
+import com.steeplesoft.kmp.demo.room.getRoomDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
 interface RootComponent {
